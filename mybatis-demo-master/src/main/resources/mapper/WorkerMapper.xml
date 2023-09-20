@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sml.mybatisdemo.dao.WorkerDao">
+    <select id="getAllWorkers" resultType="com.sml.mybatisdemo.domin.Worker" >
+        SELECT * FROM Worker ;
+    </select>
+
+    <select id="getWorkerById" resultType="com.sml.mybatisdemo.domin.Worker" >
+        SELECT * FROM Worker WHERE workId=#{id};
+    </select>
+
+    <update id="Update" parameterType="com.sml.mybatisdemo.domin.Worker" >
+        UPDATE Worker
+        <set>
+            <if test="Worker.password != null">
+                password=#{Worker.password},
+            </if>
+            <if test="Worker.name != null">
+                name=#{Worker.name},
+            </if>
+            <if test="Worker.email != null">
+                email=#{Worker.email},
+            </if>
+            <if test="Worker.telephone != null">
+                telephone=#{Worker.telephone},
+            </if>
+            <if test="Worker.warehouseId != null">
+                warehouseId=#{Worker.warehouseId},
+            </if>
+            <if test="Worker.gender != null">
+                gender=#{Worker.gender},
+            </if>
+            <if test="Worker.age != null">
+                age=#{Worker.age },
+            </if>
+            <if test="Worker.address != null">
+                address=#{Worker.address},
+            </if>
+        </set>
+            WHERE workId=#{Worker.workId}
+    </update>
+</mapper>
